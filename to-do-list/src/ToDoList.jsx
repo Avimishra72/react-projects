@@ -8,12 +8,22 @@ function ToDoList() {
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setListOfTasks(savedTasks);
+    console.log("1");
   }, []);
 
   // Save tasks to LocalStorage whenever listOfTasks changes
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(listOfTasks));
-  }, [listOfTasks]);
+  // useEffect(() => {
+  localStorage.setItem("tasks", JSON.stringify(listOfTasks));
+  // }, [listOfTasks]);
+
+  // Function to toggle task status
+  const toggleTaskStatus = (index) => {
+    setListOfTasks((prevTasks) =>
+      prevTasks.map((task, i) =>
+        i === index ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
 
   return (
     <>
@@ -23,31 +33,41 @@ function ToDoList() {
         </div>
 
         <div className="to-do-wrap">
+          {/* Pending Tasks Section */}
           <div className="to-do-box">
             <h3 className="comm-sec-hdn bl">Pending</h3>
-
-            {listOfTasks.map((item, index) => (
-              <div className="to-do-check" key={index}>
-                <label>{item}</label>
-                <input type="checkbox" id={"list" + index} />
-              </div>
-            ))}
+            {listOfTasks
+              .filter((task) => !task.completed)
+              .map((item, index) => (
+                <div className="to-do-check" key={index}>
+                  <label>{item.text}</label>
+                  <input
+                    type="checkbox"
+                    id={"list" + index}
+                    onChange={() => toggleTaskStatus(index)}
+                  />
+                </div>
+              ))}
           </div>
 
-          {/* <div className="to-do-box">
+          {/* Completed Tasks Section */}
+          <div className="to-do-box">
             <h3 className="comm-sec-hdn bl">Completed</h3>
+            {listOfTasks
+              .filter((task) => task.completed)
+              .map((item, index) => (
+                <div className="to-do-check" key={index}>
+                  <label>{item.text}</label>
+                  <input
+                    type="checkbox"
+                    checked
+                    onChange={() => toggleTaskStatus(index)}
+                  />
+                </div>
+              ))}
+          </div>
 
-            <div className="to-do-check">
-              <label htmlFor="practice2">Practice React</label>
-              <input type="checkbox" name="practice2" id="" />
-            </div>
-
-            <div className="to-do-check">
-              <label htmlFor="practice3">Practice React</label>
-              <input type="checkbox" name="practice3" id="" />
-            </div>
-          </div> */}
-
+          {/* Add Task Section */}
           <div className="add-to-do-wrap">
             <input
               onChange={(e) => setNewTask(e.target.value)}
@@ -59,12 +79,15 @@ function ToDoList() {
               id="addToDo"
               onClick={() => {
                 if (newTask.trim()) {
-                  setListOfTasks([...listOfTasks, newTask]);
+                  setListOfTasks([
+                    ...listOfTasks,
+                    { text: newTask, completed: false },
+                  ]);
                   setNewTask(""); // Clear input field
                 }
               }}
             >
-              Add You Task
+              Add Your Task
             </button>
           </div>
         </div>
