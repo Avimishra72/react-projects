@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-/* Images */
-import weatherImage from "./img/weather.webp";
-
 /* Components */
 import Dropdown from "./component/Dropdown";
 import Button from "./component/Button";
@@ -13,6 +10,26 @@ const toCelsius = (k) => (k - 273.15).toFixed(2);
 function WeatherApp() {
   const [weatherData, setWeatherData] = useState({});
   const [city, setCity] = useState("Delhi");
+
+  const getWeatherImage = (description = "") => {
+    const desc = description.toLowerCase().trim();
+    switch (desc) {
+      case "clear sky":
+        return "/img/clear-sky.jpg";
+      case "few clouds":
+        return "/img/few-cloud.webp";
+      case "haze":
+        return "/img/haze-sky.jpg";
+      case "scattered clouds":
+        return "/img/scattered-sky.jpg";
+      case "broken clouds":
+        return "/img/broken-clouds.jpg";
+      case "overcast clouds":
+        return "/img/over-cast.webp";
+      default:
+        return "/img/few-cloud.webp";
+    }
+  };
 
   useEffect(() => {
     if (!city) return;
@@ -29,7 +46,10 @@ function WeatherApp() {
       {/* Main Container Starts */}
       <div className="w-full h-dvh overflow-hidden">
         <div className="weather-img">
-          <img src={weatherImage} alt="Weather" />
+          <img
+            src={getWeatherImage(weatherData?.weather?.[0]?.description)}
+            alt="Weather"
+          />
         </div>
         {/* Weather Content Starts */}
         <div className="z-[2] relative w-full h-full p-8 ">
