@@ -3,13 +3,13 @@ import axios from "axios";
 
 /* Components */
 import Dropdown from "./component/Dropdown";
-import Button from "./component/Button";
 import WeatherDeg from "./component/WeatherDeg";
+import Forecast from "./Forecast";
 
 const toCelsius = (k) => (k - 273.15).toFixed(2);
 function WeatherApp() {
   const [weatherData, setWeatherData] = useState({});
-  const [city, setCity] = useState("Delhi");
+  const [city, setCity] = useState("Mumbai");
 
   const getWeatherImage = (description = "") => {
     const desc = description.toLowerCase().trim();
@@ -30,6 +30,8 @@ function WeatherApp() {
         return "/img/few-cloud.webp";
     }
   };
+
+  // console.log(city);
 
   useEffect(() => {
     if (!city) return;
@@ -53,32 +55,43 @@ function WeatherApp() {
         </div>
         {/* Weather Content Starts */}
         <div className="z-[2] relative w-full h-full p-8 ">
-          <div className="flex gap-8 justify-center flex-wrap mb-14">
-            <Dropdown name="city" id="city" onChange={setCity} />
-            {/* <Dropdown name="state" id="state" /> */}
-            {/* <Button text="Get Weather" onClick={getWeatherData} /> */}
+          <div className="flex gap-8 justify-center flex-wrap mb-8">
+            <Dropdown name="city" id="city" setData={setCity} />
           </div>
-          <h1 className="text-5xl font-bold text-center text-white mb-24">
-            {weatherData?.name || "Select City"}, {weatherData?.sys?.country}
-          </h1>
-          <div className="flex gap-x-40 gap-y-12 justify-center flex-wrap mb-14  ">
-            <WeatherDeg
-              text={toCelsius(weatherData?.main?.feels_like)}
-              size="5xl"
-              customStyle="w-full text-center"
-            />
-            <WeatherDeg
-              text={toCelsius(weatherData?.main?.temp_min)}
-              size="3xl"
-            />
-            <WeatherDeg
-              text={toCelsius(weatherData?.main?.temp_max)}
-              size="3xl"
-            />
+          {/* Current Day Data Starts */}
+          <div className="mb-14">
+            <h1 className="text-5xl font-bold text-center text-white mb-6">
+              {weatherData?.name || "Select City"}, {weatherData?.sys?.country}
+            </h1>
+            <div className="flex gap-x-40 gap-y-6 justify-center flex-wrap mb-6  ">
+              <WeatherDeg
+                text={toCelsius(weatherData?.main?.feels_like)}
+                size="5xl"
+                customStyle="w-full text-center"
+              />
+              <WeatherDeg
+                text={toCelsius(weatherData?.main?.temp_min)}
+                size="3xl"
+              />
+              <WeatherDeg
+                text={toCelsius(weatherData?.main?.temp_max)}
+                size="3xl"
+              />
+            </div>
+            <h1 className="text-3xl font-semibold text-center text-white">
+              {weatherData?.weather?.[0]?.description}
+            </h1>
           </div>
-          <h1 className="text-3xl font-semibold text-center text-white">
-            {weatherData?.weather?.[0]?.description}
-          </h1>
+          {/* Current Day Data Ends */}
+
+          {/* Forcasting Data Starts */}
+          <h3 className={"text-3xl font-bold text-white text-center mb-8"}>
+            Upcoming Weather Report
+          </h3>
+          <div className="flex flex-wrap justify-center gap-4 w-full">
+            <Forecast cityData={city} />
+          </div>
+          {/* Forcasting Data Ends */}
         </div>
         {/* Weather Content Ends */}
       </div>

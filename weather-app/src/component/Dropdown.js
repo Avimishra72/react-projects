@@ -1,28 +1,30 @@
 import React from "react";
 import { City } from "country-state-city";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
-function Dropdown({ name, id, onChange }) {
+function Dropdown({ name, id, setData }) {
   // const cities = City.getCitiesOfState("IN", "DL");
   const cities = City.getCitiesOfCountry("IN");
+  const uniqueCities = [...new Set(cities.map((item) => item.name))];
   // console.log(cities[0]);
+  // console.log(uniqueCities);
 
+  function handleChange(e) {
+    setData(e);
+  }
   return (
     <>
       {/* Dropdown Starts */}
-      <div className="w-[400px] rounded-md overflow-hidden">
-        <select
-          name={name}
-          id={id}
-          className="w-full h-[50px] bg-[var(--bl)] text-white px-2 text-xl"
-          onChange={(e) => onChange(e.target.value)}
-        >
-          {cities.map((value, key) => (
-            <option value={value?.name} key={key}>
-              {value?.name}, {value?.stateCode}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Autocomplete
+        disablePortal
+        options={uniqueCities}
+        sx={{ width: 300 }}
+        renderInput={(params) => <TextField {...params} label="City Name" />}
+        onChange={(e) => handleChange(e.target.textContent)}
+        style={{ background: "var(--wh)", color: "#000" }}
+      />
+
       {/* Dropdown Ends */}
     </>
   );
