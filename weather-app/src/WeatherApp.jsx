@@ -53,7 +53,7 @@ function WeatherApp() {
 
   return (
     <>
-      <div className="w-full h-dvh overflow-hidden">
+      <div className="w-full h-full ">
         <div className="weather-img">
           <img
             src={getWeatherImage(weatherData?.weather?.[0]?.description)}
@@ -102,7 +102,7 @@ function WeatherApp() {
           <h3 className={"text-3xl font-bold text-white text-center mb-8"}>
             Upcoming Weather Report
           </h3>
-          <div className="flex flex-wrap justify-center gap-4 w-full">
+          <div className="fw-full">
             <Forecast cityData={city} />
           </div>
         </div>

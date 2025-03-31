@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow: hidden;
-}
-
 :root {
   --wh: #fff;
   --bl: #0f3460;
