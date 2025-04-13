@@ -111,4 +111,4 @@ function WeatherApp() {
   );
 }
 
-export default WeatherApp;
+export default React.memo(WeatherApp);

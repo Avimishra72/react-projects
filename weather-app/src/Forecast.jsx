@@ -9,7 +9,12 @@ import "swiper/css/navigation";
 import axios from "axios";
 
 const toCelsius = (k) => (k - 273.15).toFixed(2);
-
+const withLogger = (WrappedComponent) => {
+  return (props) => {
+    console.log("Logging props:", props);
+    return <WrappedComponent {...props} />;
+  };
+};
 const Forecast = ({ cityData }) => {
   const [forecastData, setForecastData] = useState({});
 
@@ -61,4 +66,4 @@ const Forecast = ({ cityData }) => {
   );
 };
 
-export default Forecast;
+export default withLogger(Forecast);
