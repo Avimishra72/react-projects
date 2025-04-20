@@ -1,42 +1,34 @@
 import React from "react";
 import logo from "../public/punChat.svg";
+import BasicTabs from "./component/BasicTabs";
+import ChatDisplay from "./component/ChatDisplay";
 
 function ChatRoom() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <>
-      <section className="h-screen w-screen bg-[#151515] overflow-hidden">
-        <div className="flex p-4 items-center gap-1">
-          <div className="w-[30px] h-[30px]">
-            <img src={logo} alt="" />
-          </div>
-
-          <h1 className="font-medium text-xl text-[#B4A5A5]">PunChat</h1>
-        </div>
+      <section className="h-screen w-screen  overflow-hidden">
         <div className="flex w-full h-full">
-          <div className="w-[30%] overflow-y-auto p-4 bg-[#3C415C] border-r-1">
-            <h2 className="font-bold text-xl text-[#fff] mb-4">Chats</h2>
-
-            <div className="w-full flex py-3 items-center gap-2">
-              <div className="w-[60px] h-[60px] rounded-full bg-[#000]">
+          <div className="w-[30%] overflow-y-auto border-r-1 border-[#ddd]">
+            <div className="flex p-4 items-center gap-1 bg-[#680982]">
+              <div className="w-[30px] h-[30px]">
                 <img src={logo} alt="" />
               </div>
-              <div className="flex-[1]">
-                <div className="flex mb-1 items-center justify-between">
-                  <h3 className="font-semibold text-lg text-[#fff]">
-                    Umang Bhai
-                  </h3>
 
-                  <h3 className="font-semibold text-xs text-[#fff]">23:35</h3>
-                </div>
-                <div className="flex">
-                  <p className="font-regular text-sm text-[#fff]">
-                    Lorem ipsum dolor sit amet....
-                  </p>
-                </div>
-              </div>
+              <h1 className="font-medium text-xl text-[#fff]">PunChat</h1>
+            </div>
+            <BasicTabs />
+          </div>
+          <div className="w-[70%]">
+            <div className="flex w-full h-full">
+              <ChatDisplay name={"Umang Bhai"} status={"Online"} />
             </div>
           </div>
-          <div className="w-[70%]  p-4 bg-[#3C415C]"></div>
         </div>
       </section>
     </>
