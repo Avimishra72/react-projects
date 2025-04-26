@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import profilePic from "../../public/profile.jpg";
 import CallIcon from "@mui/icons-material/Call";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -7,7 +6,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import MicIcon from "@mui/icons-material/Mic";
 import SendIcon from "@mui/icons-material/Send";
 
-function ChatDisplay({ name, status }) {
+function ChatDisplay({ name, status, profilePic }) {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
 

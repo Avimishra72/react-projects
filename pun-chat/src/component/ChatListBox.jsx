@@ -1,7 +1,6 @@
 import React from "react";
-import profilePic from "../../public/profile.jpg";
 
-function ChatListBox({ name, time }) {
+function ChatListBox({ name, time, profilePic }) {
   return (
     <div className="w-full flex py-3 items-center gap-2 cursor-pointer">
       <div className="w-[60px] h-[60px] rounded-full overflow-hidden bg-[#000]">

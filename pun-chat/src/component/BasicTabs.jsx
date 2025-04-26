@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import ChatListBox from "./ChatListBox";
+import user0 from "../../public/profile.jpg";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,6 +37,27 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
+  const DummyUserData = [
+    {
+      id: 0,
+      userName: "Umang Bhai",
+      userStatus: "Online",
+      userPhoto: user0,
+    },
+    {
+      id: 1,
+      userName: "Akshar Bhai",
+      userStatus: "Online",
+      userPhoto: user0,
+    },
+    {
+      id: 2,
+      userName: "Uday Bhai",
+      userStatus: "Last seen at panipuri corner",
+      userPhoto: user0,
+    },
+  ];
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -85,7 +107,15 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <ChatListBox name={"Umang Bhai"} time={"23:25"} />
+        {DummyUserData.map((userDetail) => (
+          <ChatListBox
+            key={userDetail.id}
+            profilePic={userDetail.userPhoto}
+            name={userDetail.userName}
+            status={userDetail.userStatus}
+          />
+        ))}
+        {/* <ChatListBox name={"Umang Bhai"} time={"23:25"} /> */}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <ChatListBox name={"Baniya Chaap"} time={"23:25"} />
