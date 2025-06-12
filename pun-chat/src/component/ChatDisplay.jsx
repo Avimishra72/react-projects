@@ -36,18 +36,18 @@ function ChatDisplay({ name, status, profilePic }) {
       </div>
       {/* Chat Display */}
       <div className="w-full flex flex-col justify-end flex-[1] p-[12px] gap-[8px] border-b border-[#ddd] overflow-y-auto">
-        <p className="bg-[#680982] text-white p-[8px] w-fit mr-auto rounded-md max-w-[45%]">
+        <p className="bg-[#0D1526] text-white p-[8px] w-fit mr-auto rounded-md max-w-[45%]">
           HI
         </p>
         {messages.map((msg, index) => (
           <p
             key={index}
-            className="bg-[#680982] text-white p-[8px] w-fit ml-auto rounded-md max-w-[45%]"
+            className="bg-[#0D1526] text-white p-[8px] w-fit ml-auto rounded-md max-w-[45%]"
           >
             {msg}
           </p>
         ))}
-        <p className="bg-[#680982] text-white p-[8px] w-fit mr-auto rounded-md max-w-[45%]">
+        <p className="bg-[#0D1526] text-white p-[8px] w-fit mr-auto rounded-md max-w-[45%]">
           HI
         </p>
       </div>

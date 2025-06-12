@@ -15,7 +15,7 @@ function ChatRoom() {
       <section className="h-screen w-screen  overflow-hidden">
         <div className="flex w-full h-full">
           <div className="w-[25%] overflow-y-auto border-r-1 border-[#ddd]">
-            <div className="flex p-4 items-center gap-1 bg-[#680982]">
+            <div className="flex p-4 items-center gap-1 bg-[#0D1526]">
               <div className="w-[30px] h-[30px]">
                 <img src={logo} alt="" />
               </div>

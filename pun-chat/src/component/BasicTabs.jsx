@@ -70,7 +70,7 @@ export default function BasicTabs() {
         sx={{
           borderBottom: 1,
           borderColor: "divider",
-          background: "#680982",
+          background: "#0D1526",
         }}
       >
         <Tabs
@@ -87,22 +87,22 @@ export default function BasicTabs() {
           <Tab
             label="Chats"
             {...a11yProps(0)}
-            sx={{ color: value === 0 ? "#fda97a" : "white" }}
+            sx={{ color: value === 0 ? "#fff" : "white" }}
           />
           <Tab
             label="Groups"
             {...a11yProps(1)}
-            sx={{ color: value === 1 ? "#fda97a" : "white" }}
+            sx={{ color: value === 1 ? "#fff" : "white" }}
           />
           <Tab
             label="Status"
             {...a11yProps(2)}
-            sx={{ color: value === 2 ? "#fda97a" : "white" }}
+            sx={{ color: value === 2 ? "#fff" : "white" }}
           />
           <Tab
             label="Call"
             {...a11yProps(3)}
-            sx={{ color: value === 3 ? "#fda97a" : "white" }}
+            sx={{ color: value === 3 ? "#fff" : "white" }}
           />
         </Tabs>
       </Box>

@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./routes/Routes";
 import "./App.css";
-import ChatRoom from "./ChatRoom";
+// import ChatRoom from "./ChatRoom";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <ChatRoom />
-    </>
+    <Router>
+      <AppRoutes />
+    </Router>
   );
-}
+};
 
 export default App;
